@@ -9,10 +9,7 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "redis", ">= 4.0.1"
 gem "tailwindcss-rails", "~> 2.7"
-
-
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-
 gem "bootsnap", require: false
 
 
@@ -20,15 +17,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
   gem "brakeman", require: false
-  gem 'rspec-rails', '~> 7.0.1'
+  gem "rspec-rails", "~> 7.0.1"
   gem "rubocop-rails-omakase", require: false
 end
 
 group :development do
   gem "web-console"
 end
-
-group :test do
-end
-
-
