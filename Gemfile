@@ -11,7 +11,7 @@ gem "redis", ">= 4.0.1"
 gem "tailwindcss-rails", "~> 2.7"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
-
+gem "devise" 
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
