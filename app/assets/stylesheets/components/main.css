@@ -6,7 +6,7 @@
         @apply text-sm font-medium text-gray-700;
     }
     .label-hint {
-        @apply text-sm font-medium text-gray-700;
+        @apply text-xs font-medium text-gray-500;
     }  
     .label-hint2 {
         @apply text-xs text-gray-500 mb-1;
@@ -28,5 +28,8 @@
     }
     .link {
         @apply mt-6 space-y-2
+    }
+    .link1 {
+        @apply text-sm text-indigo-600 hover:text-indigo-500
     }
 }
