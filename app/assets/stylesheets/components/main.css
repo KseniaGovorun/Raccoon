@@ -2,6 +2,7 @@
   .title {
     @apply text-2xl font-bold mb-6 text-center;
   }
+
   .label {
     @apply text-sm font-medium text-gray-700;
   }
