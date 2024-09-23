@@ -1,0 +1,54 @@
+<div class="box">
+  <h2 class="title">Edit <%= resource_name.to_s.humanize %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div>
+      <%= f.label :username, class: "label" %>
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "field" %>
+    </div>
+
+    <div>
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "field" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="label-hint">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div>
+      <%= f.label :password, class: "label" %>
+      <div class="label-hint2">(leave blank if you don't want to change it)</div>
+      <%= f.password_field :password, autocomplete: "new-password", class: "field" %>
+      <% if @minimum_password_length %>
+        <div class="label-hint"><%= @minimum_password_length %> characters minimum</div>
+      <% end %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, class: "label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "field" %>
+    </div>
+
+    <div>
+      <%= f.label :current_password, class: "label" %>
+      <div class="label-hint2">(we need your current password to confirm your changes)</div>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "field" %>
+    </div>
+
+    <div>
+      <%= f.submit "Update", class: "submit" %>
+    </div>
+  <% end %>
+
+  <div class="mt-10 border-t pt-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-4">Cancel my account</h3>
+
+    <div class="text-sm text-gray-600 mb-4">Unhappy?</div>
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "submit" %>
+  </div>
+
+  <%= link_to "Back", :back, class: "mt-6 inline-block text-sm text-indigo-600 hover:text-indigo-500" %>
+</div>

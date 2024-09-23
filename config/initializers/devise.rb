@@ -1,6 +1,7 @@
 Devise.setup do |config|
   config.secret_key = ENV["DEVISE_SECRET_KEY"]
   config.mailer_sender = "noreply@domain.com"
+  config.authentication_keys = [ :email, :username ]
 
   require "devise/orm/active_record"
 
