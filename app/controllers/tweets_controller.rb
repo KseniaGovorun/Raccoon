@@ -1,10 +1,10 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all
+    @tweets = collection
   end
 
   def show
-    @tweet=Tweet.find(params[:id])
+    @tweet=resource
   end
 
   def new
@@ -21,22 +21,31 @@ class TweetsController < ApplicationController
   end
 
   def edit
-    @tweet=Tweet.find(params[:id])
+    @tweet=resource
   end
 
   def update
-    @tweet=Tweet.find(params[:id])
+    @tweet=resource
     if @tweet.update(tweet_params)
       redirect_to tweets_path
     end
   end
 
   def destroy
-    @tweet=Tweet.find(params[:id])
+    @tweet=resource
     @tweet.destroy
   end
 
   private
+
+  def collection
+    Tweet.all
+  end
+
+  def resource
+    collection.find(params[:id])
+  end
+
   def tweet_params
     params.require(:tweet).permit(:body)
   end
