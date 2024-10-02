@@ -11,6 +11,7 @@
 #
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
+
   has_many :tweets, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
