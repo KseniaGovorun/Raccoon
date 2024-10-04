@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Tweets", type: :request do
   describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+    it 'assigns @tweets' do
+      tweet = Tweet.create
+      get :index
+      expect(assigns(:tweet)).to eq([ tweet ])
+    end
   end
 end

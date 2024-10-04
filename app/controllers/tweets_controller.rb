@@ -4,16 +4,18 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet=resource
+    @tweet = resource
   end
 
   def new
-    @tweet=Tweet.new
+    @tweet = Tweet.new
   end
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
+
     if @tweet.save
+      flash[:notice] = "Tweet has created successfully"
       redirect_to tweets_path
     else
       render :new
@@ -21,18 +23,22 @@ class TweetsController < ApplicationController
   end
 
   def edit
-    @tweet=resource
+    @tweet = resource
   end
 
   def update
-    @tweet=resource
+    @tweet = resource
+
     if @tweet.update(tweet_params)
+      flash[:notice] = "Tweet has updated successfully"
       redirect_to tweets_path
+    else
+      render :edit
     end
   end
 
   def destroy
-    @tweet=resource
+    @tweet = resource
     @tweet.destroy
   end
 
