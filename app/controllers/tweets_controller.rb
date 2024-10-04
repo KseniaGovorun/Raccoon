@@ -15,8 +15,7 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.build(tweet_params)
 
     if @tweet.save
-      flash[:notice] = "Tweet has created successfully"
-      redirect_to tweets_path
+      redirect_to tweets_path, notice: "Tweet has created successfully"
     else
       render :new
     end
@@ -30,8 +29,7 @@ class TweetsController < ApplicationController
     @tweet = resource
 
     if @tweet.update(tweet_params)
-      flash[:notice] = "Tweet has updated successfully"
-      redirect_to tweets_path
+      redirect_to tweets_path, notice: "Tweet has updated successfully"
     else
       render :edit
     end
@@ -45,7 +43,7 @@ class TweetsController < ApplicationController
   private
 
   def collection
-    Tweet.all
+    Tweet.order(created_at: :desc)
   end
 
   def resource
