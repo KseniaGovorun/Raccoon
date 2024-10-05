@@ -44,7 +44,7 @@ class TweetsController < ApplicationController
   private
 
   def collection
-    Tweet.order(created_at: :desc)
+    Tweet.ordered_by_creation
   end
 
   def resource
