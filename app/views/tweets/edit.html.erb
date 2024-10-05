@@ -1,14 +1,8 @@
 <div class="box">
   <h2 class="title">Edit tweet</h2>
-<%= form_with model: @tweet, local: true do |f| %>
-<div>
-    <%= f.text_area :body %>
-</div>
-<div>
-      <%= f.submit "Update", class: "submit" %>
-</div>
+<%= simple_form_for @tweet do |f| %>
+  <%= f.text_area :body %>
+  <%= f.button :submit, class: "submit" %>
 <% end %>
- <div>
-      <%= link_to "Back", tweets_path, class: "link1" %> 
-</div>
+<%= link_to "Back", tweets_path, class: "link1" %> 
 </div>
