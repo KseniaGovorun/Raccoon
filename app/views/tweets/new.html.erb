@@ -1,8 +1,7 @@
-<div class="box">
-  <h2 class="title">New tweet</h2>
-<%= simple_form_for @tweet do |f| %>
-  <%= f.text_area :body %>
-  <%= f.button :submit, class: "submit" %>
+<%= turbo_frame_tag "new_tweet" do %>
+  <%= simple_form_for @tweet do |f| %>
+    <%= f.text_area :body %>
+    <%= f.button :submit, class: "submit" %>
+  <% end %>
+ <%= link_to 'Cancel', tweets_path %>
 <% end %>
-<%= link_to "Back", tweets_path, class: "link1" %> 
-</div>

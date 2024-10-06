@@ -2,12 +2,14 @@
   <h1 class="title">Untwitter</h1>
   <div class="space-y-6">
     <div class="box">
-      <%= link_to "Create", new_tweet_path, class: "submit" %>
+      <%= turbo_frame_tag "new_tweet" do %>
+  <%= link_to "Create", new_tweet_path, class: "submit" %>
+<% end %>
     </div>
     <% @tweets.each do |tweet| %>
       <div class="border-b border-gray-200 pb-10">
         <div class="box relative">
-          <span><%= tweet.user.username %></span>
+          <span>👤<%= tweet.user.username %></span>
           
           <div class="label2">
             <div class="ml-auto">
@@ -21,6 +23,10 @@
             <div class="flex items-center ml-auto">
               <%= link_to "Open", tweet_path(tweet), class: "action-link" %>
               <% if current_user.id == tweet.user_id %>
+              <%= turbo_frame_tag tweet do %>
+               <p><%= tweet.body%></p>
+               <%= link_to 'Edit this todo', edit_tweet_path(tweet), class: "edit-link" %>
+               <% end %>
                 <%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %>
                 <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link" %>
               <% end %>
