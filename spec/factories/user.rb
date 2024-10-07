@@ -4,6 +4,7 @@ FactoryBot.define do
     email            { Faker::Internet.email }
     password         { "pass123456" }
   end
+
   factory :tweet do
     body             { "I'm from Factory Bot" }
   end
