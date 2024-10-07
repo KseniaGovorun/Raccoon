@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Tweets", type: :request do
+RSpec.describe TweetsController, type: :request do
   let(:user) { create(:user) }
   let!(:tweet) { create(:tweet, user:) }
   let(:valid_attributes) { FactoryBot.attributes_for(:tweet) }

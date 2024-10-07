@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
   resources :tweets
-  resources :public_tweets
+  resources :public_tweets, only: [ :index ]
 
   get "up" => "rails/health#show", as: :rails_health_check
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
