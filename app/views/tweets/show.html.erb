@@ -7,7 +7,7 @@
                <p class="my-5 text-xl"><%= @tweet.body%></p>
 
               <div class="text-timestamp top-3 right-2">
-              <% if user_signed_in? && tweet.user == current_user %>
+              <% if user_signed_in? && @tweet.user == current_user %>
                 <%= link_to "Edit", edit_tweet_path(@tweet), class: "edit-link" %>
                 <%= button_to "Delete", tweet_path(@tweet), method: :delete, class: "delete-link" %>
               <% end %>

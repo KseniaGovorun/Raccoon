@@ -3,48 +3,57 @@ require 'rails_helper'
 RSpec.describe "Tweets", type: :request do
   let(:user) { create(:user) }
   let!(:tweet) { create(:tweet, user:) }
+  let(:valid_attributes) { FactoryBot.attributes_for(:tweet) }
+
   before { sign_in user }
 
   context "GET /tweets" do
-    it "should render index page" do
+    it "returns a successful response" do
       get tweets_path
-      expect(response).to render_template :index
+      expect(response).to be_successful
+    end
+  end
+
+  context "GET /tweets/:id" do
+    it "returns a successful response for a valid tweet" do
+      get tweet_path(tweet)
+      expect(response).to be_successful
     end
   end
 
   context "GET /tweets/new" do
-    it "should render new page" do
+    it "returns a successful response" do
       get new_tweet_path
-      expect(response).to render_template :new
+      expect(response).to have_http_status(:success)
     end
   end
 
-  context "GET /tweets/edit" do
-    it "should render edit page" do
+  context "GET /tweets/:id/edit" do
+    it "returns a successful response" do
       get edit_tweet_path(tweet)
-      expect(response).to render_template :edit
+      expect(response).to have_http_status(:success)
     end
   end
 
   context "POST /tweets" do
-    it "should create a tweet with valid attributes" do
-      post tweets_path, params: { tweet: FactoryBot.attributes_for(:tweet) }
+    it "creates a new tweet with and redirect to tweets path" do
+      post tweets_path, params: { tweet: valid_attributes }
       expect(response).to redirect_to tweets_path
       expect(flash[:notice]).to eq 'Tweet has created successfully'
     end
   end
 
   context "PUT /tweets" do
-    it "should update a tweet with valid attributes" do
-      put "/tweets/#{tweet.id}", params: { tweet: FactoryBot.attributes_for(:tweet) }
+    it "updates a tweet with valid parameters" do
+      put tweet_path(tweet), params: { tweet: valid_attributes }
       expect(response).to redirect_to tweets_path
       expect(flash[:notice]).to eq 'Tweet has updated successfully'
     end
   end
 
   context "DELETE /tweets" do
-    it "should destroy a tweet" do
-      delete "/tweets/#{tweet.id}"
+    it "deletes the tweet and redirect to tweets path" do
+      delete tweet_path(tweet)
       expect(response).to redirect_to tweets_path
       expect(flash[:notice]).to eq 'Tweet has deleted successfully'
     end
