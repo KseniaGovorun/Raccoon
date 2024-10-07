@@ -14,7 +14,6 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
 
-
     if @tweet.save
       redirect_to tweets_path, notice: "Tweet has created successfully"
     else
