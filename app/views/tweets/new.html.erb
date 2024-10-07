@@ -1,14 +1,7 @@
-<div class="box">
-  <h2 class="title">New tweet</h2>
-<%= form_with scope: :tweet, url: tweets_path, local: true do |f| %>
-<div>
-    <%= f.text_area :body%>
-</div>
-<div>
-      <%= f.submit "Create", class: "submit" %>
-</div>
+<%= turbo_frame_tag "new_tweet" do %>
+  <%= simple_form_for @tweet do |f| %>
+    <%= f.text_area :body, class: "w-full" %>
+    <%= f.button :submit, class: "submit", data: { turbo:false } %>
+  <% end %>
+ <%= link_to "Cancel", tweets_path, class: "link1" %>
 <% end %>
-<div>
-      <%= link_to "Back", tweets_path, class: "link1" %> 
-</div>
-</div>

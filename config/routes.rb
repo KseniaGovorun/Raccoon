@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, only: [ :sessions, :registrations ]
   devise_scope :user do
     unauthenticated :user do
-      root to: "devise/registrations#new", as: :unauthenticated_root
+      root to: "tweets#index", as: :unauthenticated_root
     end
   end
   resources :tweets

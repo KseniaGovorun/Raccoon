@@ -38,7 +38,12 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = resource
-    @tweet.destroy
+
+    if @tweet.destroy
+      redirect_to tweets_path, notice: "Tweet has deleted successfully"
+    else
+      render :index
+    end
   end
 
   private
