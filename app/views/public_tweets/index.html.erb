@@ -3,7 +3,6 @@
 
     <% @tweets.each do |tweet| %>
       <div class="box relative">
-
         <%= render "tweets/partials/shared/user_data", tweet: tweet %>
 
         <p class="my-5 text-xl"><%= tweet.body %></p>
