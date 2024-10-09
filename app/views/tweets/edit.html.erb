@@ -1,7 +1,7 @@
 <%= turbo_frame_tag @tweet do %>
-<%= simple_form_for @tweet do |f| %>
-  <%= f.text_area :body, class: "w-full" %>
-  <%= f.button :submit, class: "submit" %>
-<% end %>
-  <%= link_to 'Cancel', tweets_path, class: "link1" %>
+  <%= simple_form_for @tweet do |f| %>
+    <%= f.text_area :body, class: "w-full" %>
+    <%= f.button :submit, class: "submit" %>
+  <% end %>
+  <%= link_to 'Cancel', tweets_path, class: "link" %>
 <% end %>

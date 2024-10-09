@@ -2,22 +2,13 @@
   <h1 class="title">Untwitter</h1>
 
     <% @tweets.each do |tweet| %>
-        <div class="box relative">
-          <span>👤 <%= tweet.user.username %></span>
-          <span class="text-xs text-gray-500"><%= time_ago_in_words(tweet.created_at) %> ago</span>
-          
-          <%= turbo_frame_tag tweet do %>
-               <p class="my-5 text-xl"><%= tweet.body%></p>
-          <% end %>
+      <div class="box relative">
 
-          <div class="border my-3"></div>
-          <div class="flex justify-between items-center ">
-            <span class="like hover:text-red-500">♡ Like</span>
-            <div class="border h-6"></div>
-            <span class="like hover:text-green-500">🗨️ Comment</span>
-            <div class="border h-6"></div>
-            <span class="like hover:text-blue-500">⤷ Reply</span>
-          </div>
+        <%= render "tweets/partials/shared/user_data", tweet: tweet %>
+
+        <p class="my-5 text-xl"><%= tweet.body %></p>
+
+        <%= render "tweets/partials/shared/reaction" %>
       </div>
     <% end %>
 </div>

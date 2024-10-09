@@ -38,12 +38,8 @@
   .space {
     @apply space-y-2
   }
-
-  .link {
-    @apply mt-6 space-y-2
-  }
   
-  .link1 {
+  .link {
     @apply text-sm text-indigo-600 hover:text-indigo-500
   }
 
