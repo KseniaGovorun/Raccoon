@@ -50,9 +50,10 @@ RSpec.describe TweetsController, type: :request do
 
   context "PUT /tweets" do
     it "updates a tweet with valid parameters" do
-      put tweet_path(tweet), params: { tweet: valid_attributes }
+      put tweet_path(tweet), params: { tweet: { body: "I'm from Factory Bot2.0" } }
 
       expect(response).to redirect_to tweets_path
+      expect(tweet.reload.body). to eq("I'm from Factory Bot2.0")
       expect(flash[:notice]).to eq 'Tweet has updated successfully'
     end
   end
