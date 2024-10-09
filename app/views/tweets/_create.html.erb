@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <div class="box space-y-6">
+    <%= turbo_frame_tag "new_tweet" do %>
+      <%= link_to "Create", new_tweet_path, class: "submit" %>
+    <% end %>
+  </div>
+<% end %>

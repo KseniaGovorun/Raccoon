@@ -1,1 +1,32 @@
-<%= render "tweets/index"%>
+<div class="container mx-auto p-4">
+  <h1 class="title">Untwitter</h1>
+
+    <%= render partial: "tweets/create" %>
+
+    <% @tweets.each do |tweet| %>
+        <div class="box relative">
+          <span>👤 <%= tweet.user.username %></span>
+          <span class="text-xs text-gray-500"><%= time_ago_in_words(tweet.created_at) %> ago</span>
+          <%= turbo_frame_tag tweet do %>
+               <p class="my-5 text-xl"><%= tweet.body%></p>
+
+              <% if user_signed_in? && tweet.user == current_user %>
+                <div class="text-timestamp top-3 right-2">
+                <%= link_to "Open", tweet_path(tweet), class: "action-link", data: { turbo: false } %>
+                <div><%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %></div>
+                <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false } %>
+                </div>
+              <% end %>
+              
+          <% end %>
+          <div class="border my-3"></div>
+          <div class="flex justify-between items-center ">
+            <span class="like hover:text-red-500">♡ Like</span>
+            <div class="border h-6"></div>
+            <span class="like hover:text-green-500">🗨️ Comment</span>
+            <div class="border h-6"></div>
+            <span class="like hover:text-blue-500">⤷ Reply</span>
+          </div>
+      </div>
+    <% end %>
+</div>
