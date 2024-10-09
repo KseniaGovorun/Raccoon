@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TweetsController, type: :request do
   let(:user) { create(:user) }
   let!(:tweet) { create(:tweet, user:) }
-  let(:valid_attributes) { FactoryBot.attributes_for(:tweet) }
+  let(:valid_attributes) { attributes_for(:tweet) }
 
   before { sign_in user }
 
