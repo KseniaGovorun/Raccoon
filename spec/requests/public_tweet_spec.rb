@@ -5,7 +5,6 @@ RSpec.describe PublicTweetsController, type: :request do
     it "returns a successful response" do
       get public_tweets_path
 
-
       expect(response).to be_successful
     end
   end
