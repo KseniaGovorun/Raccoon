@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "new_tweet" do %>
-  <%= simple_form_for @tweet do |f| %>
+  <%= simple_form_for @tweet, url: tweets_path do |f| %>
     <%= f.text_area :body, class: "w-full" %>
     <%= f.button :submit, class: "submit", data: { turbo:false } %>
   <% end %>
