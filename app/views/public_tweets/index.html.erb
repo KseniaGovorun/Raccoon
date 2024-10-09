@@ -7,7 +7,7 @@
           <span class="text-xs text-gray-500"><%= time_ago_in_words(tweet.created_at) %> ago</span>
           
           <%= turbo_frame_tag tweet do %>
-               <p class="my-5 text-xl"><%= tweet.body%></p>
+               <p class="my-5 text-xl"><%= tweet.body %></p>
           <% end %>
 
           <div class="border my-3"></div>
