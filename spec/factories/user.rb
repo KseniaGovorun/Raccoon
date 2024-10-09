@@ -6,6 +6,6 @@ FactoryBot.define do
   end
 
   factory :tweet do
-    body     { "I'm from Factory Bot" }
+    body { "I'm from Factory Bot" }
   end
 end
