@@ -1,7 +1,7 @@
 <%= turbo_frame_tag @tweet do %>
-  <%= simple_form_for @tweet, url: tweets_path(@tweet) do |f| %>
+  <%= simple_form_for @tweet, url: tweet_path(@tweet) do |f| %>
     <%= f.text_area :body, class: "w-full" %>
-    <%= f.button :submit, class: "submit" %>
+    <%= f.button :submit, class: "submit", onclick: "return confirm('Are you sure you want to edit this tweet?');" %>
   <% end %>
   <%= link_to 'Cancel', tweets_path, class: "link" %>
 <% end %>
