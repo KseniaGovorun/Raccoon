@@ -11,13 +11,14 @@
           <%= turbo_frame_tag tweet do %>
               <p class="my-5 text-xl"><%= tweet.body%></p>
 
-              <% if user_signed_in? && tweet.user == current_user %>
-                <div class="text-timestamp top-3 right-2">
+
+              <div class="text-timestamp top-3 right-2">
                 <%= link_to "Open", tweet_path(tweet), class: "action-link", data: { turbo: false } %>
-                <div><%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %></div>
-                <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false }, onclick: "return confirm('Are you sure you want to delete this tweet?');" %>
-                </div>
-              <% end %>
+                <% if user_signed_in? && tweet.user == current_user %>
+                  <div><%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %></div>
+                  <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false }, onclick: "return confirm('Are you sure you want to delete this tweet?');" %>
+                <% end %>
+              </div>
           <% end %>
           
           <%= render "tweets/partials/shared/reaction" %>
