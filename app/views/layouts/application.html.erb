@@ -20,12 +20,9 @@
 
   <body>
     <header>
-      <%- if user_signed_in? %>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "submit-user absolute right-20 top-5" %>
-        <%= link_to "Edit", edit_user_registration_path, class: "submit-user absolute right-2 top-5" %>
-      <%- else %>
-        <%= link_to "Sign up", new_user_registration_path, class: "submit-user" %>
-      <% end %>
+      
+      <%= render "layouts/navbar" %>
+      
     </header>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
