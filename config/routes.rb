@@ -2,11 +2,13 @@ Rails.application.routes.draw do
   devise_for :users, only: [ :sessions, :registrations ], controllers: {
     registrations: "users/registrations", sessions: "users/sessions"
   }
+
   devise_scope :user do
     unauthenticated :user do
       root to: "public_tweets#index", as: :unauthenticated_root
     end
   end
+
   resources :tweets
   resources :public_tweets, only: [ :index ]
 
