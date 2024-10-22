@@ -18,7 +18,7 @@ RSpec.describe Tweet, type: :model do
 
   context 'associations' do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to have_one(:origin) }
+    it { is_expected.to have_many(:origin) }
     it { is_expected.to have_many (:comments) }
     it { is_expected.to have_many (:likes) }
   end
