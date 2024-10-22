@@ -19,6 +19,13 @@
   </head>
 
   <body>
+    <header>
+      <%- if user_signed_in? %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "submit-user" %>
+      <%- else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "submit-user" %>
+      <% end %>
+    </header>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

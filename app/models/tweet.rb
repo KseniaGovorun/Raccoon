@@ -10,6 +10,8 @@
 #  updated_at :datetime         not null
 #
 class Tweet < ApplicationRecord
+  scope :ordered_by_creation, -> { order(created_at: :desc) }
+
   belongs_to :user
   belongs_to :origin, class_name: "Tweet", optional: true
 

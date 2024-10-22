@@ -12,12 +12,15 @@ gem "tailwindcss-rails", "~> 2.7"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "devise"
+gem "faker"
+gem "simple_form"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "dotenv-rails"
   gem "brakeman", require: false
   gem "rspec-rails", "~> 7.0.1"
+  gem "factory_bot_rails"
   gem "rubocop-rails-omakase", require: false
 end
 
