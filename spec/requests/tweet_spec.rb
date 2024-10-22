@@ -60,6 +60,12 @@ RSpec.describe TweetsController, type: :request do
 
   context "DELETE /tweets" do
     it "deletes the tweet and redirect to tweets path" do
+      expect do
+        delete tweet_path(tweet)
+      end.to change(Tweet, :count).by(-1)
+    end
+
+    it "redirects to the tweets path" do
       delete tweet_path(tweet)
 
       expect(response).to redirect_to tweets_path
