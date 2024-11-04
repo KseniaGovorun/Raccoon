@@ -47,6 +47,17 @@ class TweetsController < ApplicationController
     end
   end
 
+  def retweet
+    @tweet = resource
+    @retweet = current_user.tweets.build(body: @tweet.body, origin_id: @tweet.id)
+
+    if @retweet.save
+      redirect_to tweets_path, notice: "The retweet has created successfully"
+    else
+      redirect_to tweets_path
+    end
+  end
+
   private
 
   def collection

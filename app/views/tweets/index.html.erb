@@ -4,24 +4,35 @@
     <%= render "tweets/partials/index/create" %>
 
     <% @tweets.each do |tweet| %>
-        <div class="box relative">
-
+      <% if !tweet.retweet? %>
+      <div class="box relative ">
+        <% @tweets.each do |retweet| %>
+              <% if retweet.retweet? && retweet.origin_id == tweet.id %>
+                <div class="box relative mt-0 mb-0">
+                <span>Retweeted by <%= retweet.user.username %></span>
+                <span class="text-xs text-gray-500"><%= time_ago_in_words(tweet.created_at) %> ago</span>
+                <%= button_to "Delete", tweet_path(retweet), method: :delete, class: "delete-link text-timestamp top-3 right-2", data: { turbo: false } %>
+                 </div>
+              <% end %>
+        <% end %>
+        
           <%= render "tweets/partials/shared/user_data", tweet: tweet %>
 
           <%= turbo_frame_tag tweet do %>
-              <p class="my-5 text-xl"><%= tweet.body%></p>
+            <p class="my-5 text-xl"><%= tweet.body%></p>
 
-
-              <div class="text-timestamp top-3 right-2">
-                <%= link_to "Open", tweet_path(tweet), class: "action-link", data: { turbo: false } %>
-                <% if tweet&.user == current_user %>
-                  <div><%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %></div>
-                  <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false } %>
-                <% end %>
-              </div>
+            <div class="text-timestamp top-3 right-2">
+              <%= link_to "Open", tweet_path(tweet), class: "action-link", data: { turbo: false } %>
+              <% if tweet&.user == current_user %>
+                <div><%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %></div>
+                <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false } %>
+              <% end %>
+            </div>
           <% end %>
           
-          <%= render "tweets/partials/shared/reaction" %>
-      </div>
+          <%= render "tweets/partials/shared/reaction", tweet: tweet %>
+
+        </div>
+      <% end %>
     <% end %>
 </div>
