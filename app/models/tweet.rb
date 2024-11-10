@@ -22,12 +22,16 @@ class Tweet < ApplicationRecord
   validates :body, length: { maximum: 300 }
   validate :unique_retweet_per_user, if: :retweet?
 
+  def author?(user)
+    self.user == user
+  end
+
   def retweet?
-    if origin_id?
-      true
-    else
-      false
-    end
+    origin_id.present?
+  end
+
+  def self.retweets(tweet_id)
+    where(origin_id: tweet_id)
   end
 
   private

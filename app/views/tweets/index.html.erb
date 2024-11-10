@@ -4,15 +4,13 @@
   <%= render "tweets/partials/index/create" %>
 
   <% @tweets.each do |tweet| %>
-    <% unless tweet.retweet? %>
+    <% if !tweet.retweet? %>
       <div class="box relative mb-4">
-        <% @tweets.each do |retweet| %>
-          <% if retweet.retweet? && retweet.origin_id == tweet.id %>
-            <div class="box relative mt-2 mb-2 p-2 border-l-4 border-blue-500">
-              <span>Retweeted by <%= retweet.user.username %></span>
-              <%= button_to "Delete", tweet_path(retweet), method: :delete, class: "delete-link text-timestamp top-3 right-2", data: { turbo: false } %>
-            </div>
-          <% end %>
+        <% Tweet.retweets(tweet.id).each do |retweet| %>
+          <div class="box relative mt-2 mb-2 p-2 border-l-4 border-blue-500">
+            <span>Retweeted by <%= retweet.user.username %></span>
+            <%= button_to "Delete", tweet_path(retweet), method: :delete, class: "delete-link text-timestamp top-3 right-2" %>
+          </div>
         <% end %>
 
         <%= render "tweets/partials/shared/user_data", tweet: tweet %>
@@ -22,7 +20,7 @@
 
           <div class="text-timestamp flex justify-between items-center">
             <%= link_to "Open", tweet_path(tweet), class: "action-link", data: { turbo: false } %>
-            <% if tweet.user == current_user %>
+            <% if tweet.author?(current_user) %>
               <div class="flex space-x-2">
                 <%= link_to "Edit", edit_tweet_path(tweet), class: "edit-link" %>
                 <%= button_to "Delete", tweet_path(tweet), method: :delete, class: "delete-link", data: { turbo: false } %>
