@@ -37,8 +37,7 @@ class Tweet < ApplicationRecord
   private
 
   def unique_retweet_per_user
-    if Tweet.exists?(user_id: user_id, origin_id: origin_id)
+    return unless Tweet.exists?(user_id: user_id, origin_id: origin_id)
       errors.add(:base, "You have already retweeted this tweet.")
-    end
   end
 end
