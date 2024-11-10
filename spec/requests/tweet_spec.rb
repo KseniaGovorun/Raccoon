@@ -51,10 +51,8 @@ RSpec.describe TweetsController, type: :request do
 
   context "POST /tweets/:id/retweet" do
     it "creates a new retweet and redirects to tweets path" do
-      post retweet_tweet_path(tweet)
-
+      expect { post retweet_tweet_path(tweet) }.to change { Tweet.where(origin_id: tweet.id).count }.by(1)
       expect(response).to redirect_to(tweets_path)
-      expect(Tweet.where(origin_id: tweet.id).count).to eq(1)
     end
   end
 
@@ -64,22 +62,20 @@ RSpec.describe TweetsController, type: :request do
 
       expect(response).to redirect_to tweets_path
       expect(tweet.reload.body). to eq("I'm from Factory Bot2.0")
-      expect(flash[:notice]).to eq 'Tweet has updated successfully'
+      expect(flash[:notice]).to eq "Tweet has updated successfully"
     end
   end
 
   context "DELETE /tweets" do
     it "deletes the tweet and redirect to tweets path" do
-      expect do
-        delete tweet_path(tweet)
-      end.to change(Tweet, :count).by(-2)
+      expect { delete tweet_path(tweet) }.to change(Tweet, :count).by(-2)
     end
 
     it "redirects to the tweets path" do
       delete tweet_path(tweet)
 
       expect(response).to redirect_to tweets_path
-      expect(flash[:notice]).to eq 'Tweet has deleted successfully'
+      expect(flash[:notice]).to eq "Tweet has deleted successfully"
     end
   end
 end
