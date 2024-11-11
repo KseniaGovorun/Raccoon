@@ -11,6 +11,7 @@
 #
 class Tweet < ApplicationRecord
   scope :ordered_by_creation, -> { order(created_at: :desc) }
+  scope :retweets, ->(tweet_id) { where(origin_id: tweet_id) }
 
   belongs_to :user
   belongs_to :origin, class_name: "Tweet", optional: true
@@ -30,14 +31,11 @@ class Tweet < ApplicationRecord
     origin_id.present?
   end
 
-  def self.retweets(tweet_id)
-    where(origin_id: tweet_id)
-  end
-
   private
 
   def unique_retweet_per_user
     return unless Tweet.exists?(user_id: user_id, origin_id: origin_id)
+
       errors.add(:base, "You have already retweeted this tweet.")
   end
 end

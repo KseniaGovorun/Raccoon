@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :tweets do
     post "retweet", on: :member
   end
-  get "/error", to: "tweets#error"
+  get "error", to: "tweets#error"
 
   resources :public_tweets, only: [ :index ]
 
