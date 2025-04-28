@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tweets
+  resources :tweets do
+    post "retweet", on: :member
+  end
+  get "error", to: "tweets#error"
+
   resources :public_tweets, only: [ :index ]
 
   get "up" => "rails/health#show", as: :rails_health_check
